@@ -1,6 +1,6 @@
 package tests;
 
-import data.OrderData;
+// import data.OrderData;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 
@@ -18,7 +18,6 @@ public class ListOfOrdersTest extends BaseTest {
     @Description("getting list of orders")
     public void checkListOfOrderNotNull() {
         Order order = new Order();
-        OrderData orderData = new OrderData();
         order.getListOfOrders()
                 .then().statusCode(SC_OK)
                 .and()

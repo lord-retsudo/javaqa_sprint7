@@ -2,8 +2,6 @@ package data;
 
 import java.util.Arrays;
 
-import static io.restassured.RestAssured.given;
-
 public class OrderData {
     private String firstName;
     private String lastName;

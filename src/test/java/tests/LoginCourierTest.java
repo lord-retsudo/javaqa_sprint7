@@ -7,8 +7,6 @@ import io.qameta.allure.Story;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import java.util.Arrays;
-import static java.nio.charset.StandardCharsets.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -63,7 +61,7 @@ public class LoginCourierTest extends BaseTest {
         courierData.setLogin("");
         courier.getResponseLoginCourier(courierData)
                 .then()
-                .assertThat().body("message", equalTo("Недостаточно данных для входа"))
+                .assertThat().body("message", equalTo("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґР°РЅРЅС‹С… РґР»СЏ РІС…РѕРґР°"))
                 .and()
                 .statusCode(SC_BAD_REQUEST);
         idCourier = responseLoginCourier
@@ -82,7 +80,7 @@ public class LoginCourierTest extends BaseTest {
         courierData.setPassword("");
         courier.getResponseLoginCourier(courierData)
                 .then()
-                .assertThat().body("message", equalTo("Недостаточно данных для входа"))
+                .assertThat().body("message", equalTo("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґР°РЅРЅС‹С… РґР»СЏ РІС…РѕРґР°"))
                 .and()
                 .statusCode(SC_BAD_REQUEST);
         idCourier = responseLoginCourier
@@ -101,7 +99,7 @@ public class LoginCourierTest extends BaseTest {
         courierData.setLogin("UsaTest");
         courier.getResponseLoginCourier(courierData)
                 .then()
-                .assertThat().body("message", equalTo("Учетная запись не найдена"))
+                .assertThat().body("message", equalTo("РЈС‡РµС‚РЅР°СЏ Р·Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°"))
                 .and()
                 .statusCode(SC_NOT_FOUND);
         idCourier = responseLoginCourier
@@ -118,13 +116,9 @@ public class LoginCourierTest extends BaseTest {
         courier.createCourierAndGetResponse(courierData);
         Response responseLoginCourier = courier.getResponseLoginCourier(courierData);
         courierData.setPassword("Qwe");
-        //String msg = "РЈС‡РµС‚РЅР°СЏ Р·Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°";
-        //String msg = new String("РЈС‡РµС‚РЅР°СЏ Р·Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°", UTF_8);
         courier.getResponseLoginCourier(courierData)
                 .then()
-                .assertThat().body("message", equalTo("Учетная запись не найдена"))
-        //         .assertThat().body("message", equalTo(Arrays.asList("РЈС‡РµС‚РЅР°СЏ Р·Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°").toString()))
-        //        .assertThat().body("message", hasItem("РЈС‡РµС‚РЅР°СЏ Р·Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°"))
+                .assertThat().body("message", equalTo("РЈС‡РµС‚РЅР°СЏ Р·Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°"))
                 .and()
                 .statusCode(SC_NOT_FOUND);
         idCourier = responseLoginCourier
